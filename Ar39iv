@@ -764,7 +764,7 @@
       <!-- Lead visual grid -->
       <div class="article-lead">
         <div class="article-lead-img">
-          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=700&q=80"
+          <img src="https://github.com/fdev-looper/arimages/blob/main/ar39iv.png?raw=true"
                alt="Innocence and Emotion"
                onerror="this.src='https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=700&q=80'">
         </div>
@@ -837,9 +837,9 @@
         <!-- Share -->
         <div class="share-row">
           <span class="share-label">Share</span>
-          <a class="share-btn" href="https://twitter.com/intent/tweet?text=Impulsiveness+V%2FS+Innocence+%E2%80%94+DNATech+Article+%2339&url=https://fdev-looper.github.io/blogs/ar39iv.html" target="_blank" title="Share on X"><i class="fab fa-x-twitter"></i></a>
-          <a class="share-btn" href="https://wa.me/?text=Read+this+article+on+DNATech%3A+https://fdev-looper.github.io/blogs/ar39iv.html" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://fdev-looper.github.io/blogs/ar39iv.html" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?text=Impulsiveness+V%2FS+Innocence+%7C+DNATech+Article+%2339&url=https://fdev-looper.github.io/blogs/Ar39iv" target="_blank" title="Share on X"><i class="fab fa-x-twitter"></i></a>
+          <a class="share-btn" href="https://wa.me/?text=Read+this+article+on+DNATech%3A+https://fdev-looper.github.io/blogs/Ar39iv" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://fdev-looper.github.io/blogs/Ar39iv" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);this.innerHTML='<i class=\'fas fa-check\'></i>';setTimeout(()=>{this.innerHTML='<i class=\'fas fa-link\'></i>'},2000);return false;" title="Copy link"><i class="fas fa-link"></i></a>
         </div>
 
