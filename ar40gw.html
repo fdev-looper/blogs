@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Warming or Global Warning? | DNATech Article #40</title>
+  <meta name="description" content="Global warming may be the fire, but global warning is the spark. A deep investigation into the human choices that made climate change inevitable.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg:          #0d0f14;
+      --bg2:         #1a1e28;
+      --bg3:         #222736;
+      --gold:        #c8a96e;
+      --gold-dim:    rgba(200,169,110,0.15);
+      --green:       #4a8c6f;
+      --green-dim:   rgba(74,140,111,0.15);
+      --ember:       #c45e3a;
+      --ember-dim:   rgba(196,94,58,0.15);
+      --text:        #e8e0d0;
+      --text-mid:    #b0a898;
+      --text-dim:    #6a6258;
+      --border:      rgba(200,169,110,0.12);
+      --border-mid:  rgba(200,169,110,0.25);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Merriweather', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    .read-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--ember));
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    .warning-meter {
+      position: fixed;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      z-index: 100;
+    }
+    .meter-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      margin-bottom: 0.5rem;
+    }
+    .meter-track {
+      width: 3px;
+      height: 200px;
+      background: var(--bg3);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .meter-fill {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 0%;
+      border-radius: 2px;
+      transition: height 0.6s ease, background 0.6s ease;
+      background: var(--green);
+    }
+    .meter-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1.5px solid var(--text-dim);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .meter-dot.active { background: var(--gold); border-color: var(--gold); }
+    .meter-dot:hover { transform: scale(1.4); }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(13,15,20,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .site-header.hidden { transform: translateY(-100%); }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 2rem; height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .brand-icon {
+      width: 34px; height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--border-mid);
+      overflow: hidden;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .header-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background: var(--bg2);
+    }
+    .hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      filter: saturate(0.7);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,15,20,1) 0%, rgba(13,15,20,0.6) 50%, rgba(13,15,20,0.2) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 2rem 5rem;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 30px; height: 1px;
+      background: var(--ember);
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: var(--ember); }
+    .hero-subtitle {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-mid);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 1.25rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+    .hero-meta .sep { opacity: 0.3; }
+    .hero-tag {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,0.3);
+      padding: 0.2rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    .hook-section {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .hook-text {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.8;
+      position: relative;
+    }
+    .hook-text::before {
+      content: '\201C';
+      font-size: 6rem;
+      color: var(--gold-dim);
+      position: absolute;
+      top: -2rem; left: -1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      line-height: 1;
+    }
+    .hook-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--ember));
+      margin: 2.5rem auto;
+      border-radius: 2px;
+    }
+
+    .article-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .section-grid.reverse { direction: rtl; }
+    .section-grid.reverse > * { direction: ltr; }
+
+    .section-images { display: flex; flex-direction: column; gap: 1rem; }
+    .sec-img {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg2);
+      position: relative;
+    }
+    .sec-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.8) brightness(0.9);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+    .sec-img:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
+    .sec-img.tall { height: 300px; }
+    .sec-img.short { height: 180px; }
+
+    .section-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+    }
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .section-heading.gold { color: var(--gold); }
+    .section-heading.green { color: var(--green); }
+    .section-heading.ember { color: var(--ember); }
+
+    .section-body {
+      font-size: 0.97rem;
+      color: var(--text-mid);
+      line-height: 2;
+    }
+    .section-body p { margin-bottom: 1.3rem; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .pull-quote {
+      margin: 1.8rem 0;
+      padding: 1.2rem 1.5rem;
+      border-left: 3px solid var(--gold);
+      background: var(--gold-dim);
+      border-radius: 0 10px 10px 0;
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold);
+      line-height: 1.65;
+    }
+    .pull-quote.green-q {
+      border-color: var(--green);
+      background: var(--green-dim);
+      color: #7ec8a0;
+    }
+    .pull-quote.ember-q {
+      border-color: var(--ember);
+      background: var(--ember-dim);
+      color: #e8906a;
+    }
+
+    .message-box {
+      margin-top: 1.5rem;
+      padding: 1rem 1.3rem;
+      background: var(--bg3);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .message-box strong { color: var(--gold); }
+
+    .highlight-critical {
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.5rem;
+      background: var(--ember-dim);
+      border: 1px solid rgba(196,94,58,0.4);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: #e8906a;
+      line-height: 1.75;
+    }
+    .highlight-critical strong { color: var(--ember); font-size: 1rem; display: block; margin-bottom: 0.4rem; }
+
+    /* Case study cards */
+    .case-study {
+      margin: 1.2rem 0;
+      padding: 1rem 1.3rem;
+      background: var(--bg3);
+      border: 1px solid var(--border-mid);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+    .case-study-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .case-study-label.green { color: var(--green); }
+    .case-study-label.ember { color: var(--ember); }
+
+    /* Bridge paragraph */
+    .bridge-para {
+      max-width: 700px;
+      margin: 0 auto 0;
+      padding: 2rem 2rem 0;
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      text-align: center;
+      line-height: 1.9;
+    }
+
+    /* Timeline graphic */
+    .timeline-wrap {
+      margin: 2.5rem 0 1rem;
+    }
+    .timeline-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1.2rem;
+    }
+    .timeline-track {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+    }
+    .timeline-line-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--bg);
+      flex-shrink: 0;
+      margin-top: 4px;
+      box-shadow: 0 0 0 2px var(--border-mid);
+    }
+    .timeline-connector {
+      width: 2px;
+      height: 32px;
+      background: var(--border);
+      margin-top: 2px;
+    }
+    .timeline-item:last-child .timeline-connector { display: none; }
+    .timeline-text {
+      padding-bottom: 0.8rem;
+    }
+    .timeline-era {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .timeline-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    .timeline-note {
+      margin-top: 1rem;
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    /* Flowchart */
+    .flowchart-wrap {
+      margin: 2rem 0;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .flowchart {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 600px;
+      flex-wrap: nowrap;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+    .flow-bubble {
+      background: var(--bg3);
+      border: 1.5px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      white-space: nowrap;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .flow-bubble:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .flow-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.58rem;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+    .flow-arrow {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      padding: 0 0.3rem;
+      padding-bottom: 1.2rem;
+    }
+
+    /* AI uses grid */
+    .ai-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .ai-box {
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+    .ai-box.good {
+      background: var(--green-dim);
+      border: 1px solid rgba(74,140,111,0.3);
+    }
+    .ai-box.bad {
+      background: var(--ember-dim);
+      border: 1px solid rgba(196,94,58,0.3);
+    }
+    .ai-box-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .ai-box.good .ai-box-title { color: var(--green); }
+    .ai-box.bad .ai-box-title { color: var(--ember); }
+    .ai-box ul { list-style: none; padding: 0; }
+    .ai-box ul li { color: var(--text-mid); padding: 0.1rem 0; }
+    .ai-box.good ul li::before { content: '\2726 '; color: var(--green); font-size: 0.6rem; }
+    .ai-box.bad ul li::before { content: '\2726 '; color: var(--ember); font-size: 0.6rem; }
+
+    /* Hope section */
+    .hope-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .hope-card {
+      padding: 1.1rem 1.2rem;
+      background: var(--green-dim);
+      border: 1px solid rgba(74,140,111,0.3);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+    .hope-card-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .hope-card p { color: var(--text-mid); margin: 0; }
+
+    /* Finale */
+    .finale-section {
+      position: relative;
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+    .finale-img {
+      width: 100%;
+      height: 500px;
+      position: relative;
+    }
+    .finale-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.5) brightness(0.4);
+    }
+    .finale-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+    }
+    .finale-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+      text-align: center;
+    }
+    .finale-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .finale-heading span { color: var(--ember); }
+    .finale-body {
+      font-size: 0.98rem;
+      color: var(--text-mid);
+      line-height: 2;
+      text-align: left;
+    }
+    .finale-body p { margin-bottom: 1.4rem; }
+    .finale-closing {
+      margin-top: 3rem;
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold);
+      line-height: 1.7;
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid var(--border-mid);
+      border-radius: 14px;
+      background: var(--gold-dim);
+    }
+
+    /* Writer note */
+    .writer-note {
+      margin-top: 2.5rem;
+      padding: 1.3rem 1.5rem;
+      background: var(--bg2);
+      border: 1px dashed var(--border-mid);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      text-align: left;
+    }
+    .writer-note .wn-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* References section */
+    .ref-section-full {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .ref-section-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .ref-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.6rem;
+    }
+    .ref-link-item {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .ref-link-item a {
+      color: var(--gold);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .ref-link-item a:hover { text-decoration: underline; }
+    .ref-link-item .ref-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-right: 0.35rem;
+    }
+
+    /* Sidebar layout */
+    .page-wrap {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .sidebar-col {
+      position: sticky;
+      top: 70px;
+    }
+    .sidebar-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sidebar-heading::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .toc-item {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .toc-item:last-child { border-bottom: none; }
+    .toc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      width: 20px;
+      flex-shrink: 0;
+    }
+    .toc-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+    .toc-item:hover .toc-text,
+    .toc-item.active .toc-text { color: var(--gold); }
+    .toc-item.active .toc-num { color: var(--gold); }
+
+    .ref-item {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-item a { color: var(--gold); text-decoration: none; }
+    .ref-item a:hover { text-decoration: underline; }
+
+    .about-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .theme-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+    .theme-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-mid);
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .theme-tag:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .share-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .share-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .share-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .share-btn:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .author-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    .author-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border-mid);
+      flex-shrink: 0;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .author-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .author-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
+    }
+    .article-stamp {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      margin-top: 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    .article-stamp span { color: var(--gold); font-weight: 600; }
+
+    .site-footer {
+      background: #070910;
+      border-top: 1px solid var(--border);
+      margin-top: 5rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 2.5rem 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: start;
+    }
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .footer-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+    }
+    .footer-nav {
+      display: flex; flex-direction: column;
+      gap: 0.45rem; align-items: flex-end;
+    }
+    .footer-nav a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1.2rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+    }
+    .social-links { display: flex; gap: 0.6rem; }
+    .social-link {
+      width: 32px; height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .back-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--border-mid);
+      color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); }
+    .back-top:hover { background: var(--gold-dim); transform: translateY(-3px); }
+
+    @media (max-width: 960px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar-col { position: static; }
+      .warning-meter { display: none; }
+    }
+    @media (max-width: 720px) {
+      .section-grid,
+      .section-grid.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .ai-grid { grid-template-columns: 1fr; }
+      .hope-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 3.5rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-nav { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .flowchart { min-width: 500px; }
+      .ref-links-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .header-inner { padding: 0 1rem; }
+      .hero-content { padding: 0 1.25rem 4rem; }
+      .article-section { padding: 3rem 1.25rem; }
+      .hook-section { padding: 3rem 1.25rem; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="read-progress" id="readProgress"></div>
+
+  <div class="warning-meter" id="warningMeter">
+    <div class="meter-label">Warning Level</div>
+    <div class="meter-dot active" title="Commons" onclick="scrollToSection(0)"></div>
+    <div class="meter-dot" title="Oceans" onclick="scrollToSection(1)"></div>
+    <div class="meter-dot" title="Psychology" onclick="scrollToSection(2)"></div>
+    <div class="meter-dot" title="Conflict" onclick="scrollToSection(3)"></div>
+    <div class="meter-dot" title="Division" onclick="scrollToSection(4)"></div>
+    <div class="meter-dot" title="AI" onclick="scrollToSection(5)"></div>
+    <div class="meter-dot" title="Growth" onclick="scrollToSection(6)"></div>
+    <div class="meter-dot" title="Hope" onclick="scrollToSection(7)"></div>
+    <div class="meter-track">
+      <div class="meter-fill" id="meterFill"></div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="https://decodingnewage.in/blogs.html" class="brand">
+        <div class="brand-icon">
+          <img src="https://github.com/fdev-looper/blogs/blob/main/DNATech%20logo.png?raw=true" alt="DNATech"
+               onerror="this.style.display='none'">
+        </div>
+        DNATech
+      </a>
+      <div class="header-badge">Article #40 · Environment</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-img">
+      <img src="https://github.com/fdev-looper/arimages/blob/main/heroar40.jpeg?raw=true" alt="Global Warning"
+           onerror="this.src='https://images.unsplash.com/photo-1526749837599-b4eba9fd855e?auto=format&fit=crop&w=1600&q=80'">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">DNATech · #40 · Environment &amp; Human Behavior</div>
+      <h1 class="hero-title">Global Warming<br>or Global <span>Warning?</span></h1>
+      <p class="hero-subtitle">The fire was never just in the atmosphere. It was in us — long before the smoke.</p>
+      <div class="hero-meta">
+        <span>By <strong style="color:var(--gold)">DNATech</strong></span>
+        <span class="sep">|</span>
+        <span>June 2026</span>
+        <span class="sep">|</span>
+        <span class="hero-tag"><i class="far fa-clock" style="font-size:0.65rem"></i> &nbsp;11 min read</span>
+        <span class="hero-tag">Climate · Psychology · AI</span>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      Scroll
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="hook-section">
+    <p class="hook-text">Every year we hear warnings about rising temperatures, melting glaciers, and extreme weather. But what if global warming is not the first warning? What if it is the consequence of warnings humanity ignored long before the climate crisis began?</p>
+    <div class="hook-divider"></div>
+  </div>
+
+  <div class="page-wrap">
+    <main class="main-col">
+
+      <!-- SECTION 1: COMMONS -->
+      <section class="article-section" id="sec1" data-section="0">
+        <div class="section-grid">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.openai.com/static-rsc-4/vjC6yi33C_KRtJU1i5A-u0imXbr1ot7Qb4lh2GDRMbF7ycEP8vc9_qWysVgjQc8cZ5BWnEpV8rvxYdy-LGX0dRkkusAFDdqiRSglADq7wmHr0FtoA-nik5adIhsS-Z2d94hUIje2kEZ-E71zA5WZpuWoifhJEFCngoZutJ_ZT8sorLEsVIQ0UK2MsjAdp18N?purpose=inline"
+                   alt="Amazon deforestation"
+                   onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.openai.com/static-rsc-4/U_0dGv0G_jNL2UoEfCyfTALjhuGqI4tyncHMI3utjihUoGQVdeNwt7W6P8aGJx3p0S4oELa419uEkZ67iJBX-R7Raup9eiaJa7fEhBbMiuJpSEcEEEB9LYDBcpVk-qNrr6KPS6-phP4VRDOI6mZ3qdQhHmZLsYDFkGninAdvde5fAqQMkDcwPEUKubr1BIjb?purpose=fullsize"
+                   alt="Commons destroyed"
+                   onerror="this.src='https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">01 · The First Warning</div>
+            <h2 class="section-heading green">The Commons We All Share</h2>
+            <div class="section-body">
+              <p>In 1968, ecologist Garrett Hardin gave a name to something humanity had been practicing for centuries — the Tragedy of the Commons. When a resource belongs to everyone, it effectively belongs to no one. Each individual extracts as much as they can, because restraint on their part means someone else simply takes more. The forest gets cut. The river gets drained. The atmosphere gets filled.</p>
+              <div class="pull-quote green-q">"That which is common to the greatest number has the least care bestowed upon it. Every one thinks chiefly of his own, hardly at all of the common interest." — Aristotle</div>
+              <p>Go back to the stone age. No government subsidies, no corporate lobbying, no quarterly earnings targets. Humans took what they needed and moved on. The land, the water, the forest — these were not commodities. They were survival conditions, and survival demanded respect. When the resource disappeared, the people disappeared with it. That consequence kept the balance.</p>
+              <p>Somewhere between then and now, need became greed, and the commons became a free buffet with no last call.</p>
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label green"><i class="fas fa-leaf"></i> Case Study: The Amazon Rainforest</div>
+              The Amazon covers roughly 5.5 million square kilometres and produces about 20 percent of the world's oxygen. Since the 1970s, more than 17 percent of it has been cleared, primarily for cattle ranching and soy production. In 2021 alone, Brazil lost approximately 13,235 square kilometres of Amazon forest cover. Scientists now warn that parts of the Amazon are releasing more carbon than they absorb, meaning the lungs of the planet are beginning to suffocate.
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label green"><i class="fas fa-water"></i> Case Study: The Aral Sea</div>
+              Once the fourth largest lake on Earth, the Aral Sea in Central Asia has shrunk to roughly 10 percent of its original size following Soviet irrigation projects in the 1960s that diverted its two main feeder rivers. Fishing communities that once depended on it were left with a desert of salt and rusting boats. It stands today as one of the clearest photographs ever taken of what happens when a shared resource is treated as though it belongs to no one.
+            </div>
+
+            <div class="message-box"><strong>The tragedy begins</strong> not with one bad actor — it begins the moment personal gain is allowed to quietly outweigh collective responsibility.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRIDGE -->
+      <div class="bridge-para">
+        Once we understand why people overuse shared resources, a deeper question appears: why do humans continue ignoring warnings even when the consequences are already visible? The answer sits not in the atmosphere — but in the mind.
+      </div>
+
+      <!-- SECTION 2: OCEANS -->
+      <section class="article-section" id="sec2" data-section="1">
+        <div class="section-grid reverse">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.openai.com/static-rsc-4/hCrHfDz0D03Pla7tzvtqNRkyKtKTGCD8GF4XWEekOM4svChpjWM3l26XN4WXJ8hPtFqMVqAFvbGnInuEBkTvk5tJSY-P_3dJ-Dc5ofsZ_pMpkNM44RCUtRvOUbj4kwnTVUJaISRprLeI_WK5kBBE5KGHPXzaXeexIR2gwflp5eg_LkiCajuEo5UsNdeqXPgO?purpose=inline"
+                   alt="Overfishing crisis"
+                   onerror="this.src='https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.openai.com/static-rsc-4/K0iBhirXU4CjzV0EI9tjNzeZ8Bl9fHSI2JzQeyGTrPV6Zp1FM0yPrC8GcjADkoVA8jCzEJyTzYzIB9utd086knE5pPKm5wvX4wr_J3sL0u6raHIVG-3sSe9Yoevc4fNyVBWP-SsA416kle26Gf7iLUm5-ykdceFEVJjVuuDIs0bU-5Lny7Li3XyVqZd3mf-T?purpose=fullsize"
+                   alt="Oceans depleting"
+                   onerror="this.src='https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">02 · The Scale of Indifference</div>
+            <h2 class="section-heading gold">Oceans Without Owners</h2>
+            <div class="section-body">
+              <p>No single fisherman has ever destroyed an ocean. That is the uncomfortable truth at the heart of the overfishing crisis — and at the heart of most environmental disasters. There is no villain with a master plan. There are simply millions of people, each making a rational decision in their own interest, each taking a little more than they should.</p>
+              <p>In the stone age, a hunter took what his tribe could eat. Today the consequence has been deferred. Corporations profit this quarter while ocean fish populations collapse over the next decade. The fisherman in one country over-harvests because he knows fishermen in three other countries are doing the same. No coordination. No shared restraint. Only the rational, self-interested math of survival — until there is nothing left to compete over.</p>
+              <div class="pull-quote">"Shared resources disappear not because one person is evil — but because everyone acts rationally for themselves, until nothing remains."</div>
+              <p>Global warming did not begin with carbon. It began with this logic — that the shared world is a resource to be extracted until someone else's problem becomes yours.</p>
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label"><i class="fas fa-fish"></i> Case Study: The Grand Banks Collapse</div>
+              The Grand Banks off Newfoundland, Canada, were once considered among the most abundant fishing grounds on the planet. European ships had harvested cod there since the 1500s. By 1992, the cod population had collapsed so completely that the Canadian government declared a moratorium on cod fishing, eliminating 40,000 jobs overnight. Nearly three decades later, the stocks have still not fully recovered. The Grand Banks is not a story of one bad season. It is a story of collective extraction that continued long after the warnings were filed.
+            </div>
+
+            <div class="message-box"><strong>The ocean has no border patrol.</strong> That is precisely why it is disappearing — slowly, silently, and entirely on schedule.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: PSYCHOLOGY -->
+      <section class="article-section" id="sec3" data-section="2">
+        <div class="section-grid">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80"
+                   alt="Sunset over nature"
+                   onerror="this.src='https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.unsplash.com/photo-1569163139599-0f4517e36f51?auto=format&fit=crop&w=800&q=80"
+                   alt="Human and earth connection"
+                   onerror="this.src='https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">03 · The Mind That Looks Away</div>
+            <h2 class="section-heading green">The Psychology of Ignoring Warnings</h2>
+            <div class="section-body">
+              <p>Psychologist Erich Fromm expanded biophilia beyond a simple love of nature. In his framework, this is a productive love of all that is alive — and crucially, this love cannot be compartmentalized. A person who genuinely loves other human beings naturally extends that care to the world they live in. A person who has disconnected from both becomes, in Fromm's words, a destroyer of both humanity and the environment.</p>
+              <p>We are dominated by the technology-oriented mind. Immediate rewards feel real; future consequences feel abstract. A new oil pipeline means jobs today. A collapsing ecosystem means suffering in thirty years. The brain, shaped by millions of years of short-term survival thinking, consistently chooses the former. This is not stupidity — it is biology operating in a context it was never designed for.</p>
+              <div class="pull-quote green-q">"If you love life — truly love it — you cannot help but extend that love to the world that sustains it." — Erich Fromm</div>
+              <p>We should see the Earth as a living being, not dead material of use. Every wildfire, every drought, every extinction is feedback from a living system. The warning was always there. We simply found it easier to look away than to change.</p>
+            </div>
+            <div class="message-box"><strong>The danger is rarely invisible.</strong> It is simply easier to ignore than to act upon — and we have been scheduling concern for later while later keeps arriving as something worse.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: WAR -->
+      <section class="article-section" id="sec4" data-section="3">
+        <div style="text-align:center; margin-bottom: 2.5rem;">
+          <div style="font-family:'DM Sans',sans-serif; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ember); margin-bottom:0.5rem;">The Shift</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.15em; color:var(--text-dim);">From Global Warming to Global Warning</div>
+        </div>
+        <div class="section-grid reverse">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80"
+                   alt="People gathering conflict"
+                   onerror="this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.pexels.com/photos/6796571/pexels-photo-6796571.jpeg?auto=compress&cs=tinysrgb&w=800"
+                   alt="Life and innocence"
+                   onerror="this.src='https://images.unsplash.com/photo-1472148438235-7d56e1218191?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">04 · When We Turn on Each Other</div>
+            <h2 class="section-heading ember">When Humanity Fights Itself</h2>
+            <div class="section-body">
+              <p>Every war begins long before the first shot is fired. It begins with failures — in diplomacy, in understanding, in the willingness to hear what the other side is actually saying. By the time weapons are raised, a long chain of political miscalculation, unchecked ego, and collapsed cooperation has already done its worst work quietly.</p>
+              <p>The tragedy is not that people defend their homes. That instinct is entirely human and entirely understandable. The tragedy is that humanity repeatedly creates situations where defense becomes necessary in the first place — where the failure of conversation produces the necessity of conflict.</p>
+              <p>Your first identity is not your nationality. Not your religion. Not your tribe. It is this: you are a human being, standing on a planet that does not issue passports.</p>
+              <div class="highlight-critical">
+                <strong>⚠ The Ecological Bill of War</strong>
+                The winner of a war is kept alive by Mother Earth — only to face something far worse. No amount of gold or currency can pay the ecological debt that conflict leaves behind. The trees burned for military cover, the rivers poisoned by weapons production, the soil rendered barren by bombardment — these cannot be reimbursed. The planet presents its own invoice, and it accepts no currency we have yet invented.
+              </div>
+              <div class="pull-quote ember-q">"They did not win the war. They simply lost something larger — and called the wreckage victory."</div>
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label ember"><i class="fas fa-fire"></i> Case Study: Kuwait Oil Fires, 1991</div>
+              During the Gulf War, retreating Iraqi forces set fire to more than 600 Kuwaiti oil wells. The fires burned for nearly ten months and released approximately 2.1 billion tonnes of carbon dioxide equivalent into the atmosphere — comparable to the combined annual emissions of several industrialised nations. The oil lakes left behind contaminated an estimated 49 million tonnes of soil and sand. The wells were eventually extinguished, but the ecological damage to the region's soil, water table, and air quality stretched across years.
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label ember"><i class="fas fa-radiation"></i> Case Study: Environmental Toll of the Russia-Ukraine War</div>
+              Since the full-scale invasion began in February 2022, Ukraine's environmental ministry has documented thousands of incidents of ecological damage. These include contamination of water sources from destroyed infrastructure, deforestation caused by shelling in protected areas, and soil contamination from unexploded munitions across agricultural land. A 2023 assessment by the Kyiv School of Economics placed the measurable environmental damage at over 56 billion US dollars. The damage to food-producing soil and groundwater systems will extend well beyond any eventual ceasefire.
+            </div>
+
+            <div class="message-box"><strong>Every resource spent on conflict</strong> is a resource taken from survival. The planet does not pause its feedback while we settle our arguments.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: BORDERS -->
+      <section class="article-section" id="sec5" data-section="4">
+        <div class="section-grid">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.pexels.com/photos/6185435/pexels-photo-6185435.jpeg?auto=compress&cs=tinysrgb&w=800"
+                   alt="Diversity message"
+                   onerror="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.pexels.com/photos/7048012/pexels-photo-7048012.jpeg?auto=compress&cs=tinysrgb&w=800"
+                   alt="Earth cutout hands"
+                   onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">05 · Lines That Only We Can See</div>
+            <h2 class="section-heading gold">Division Beyond Borders</h2>
+            <div class="section-body">
+              <p>Think about what we flex. We boast about the country we were born in — a country we did not choose, did not build, did not earn through any act of our own. We mock the accent of someone who grew up three hundred kilometres away, as if the particular shape a language takes in a child's mouth is a measure of their worth.</p>
+              <p>Diversity is not the problem. It never was. The failure is in acceptance — or rather, the refusal of it. Every culture that has ever existed developed as a response to its environment: the food available, the climate endured, the history survived. Different circumstances produced different people. That is not a hierarchy. That is adaptation.</p>
+              <div class="pull-quote">"Go pick a mango from a tree. It will not ask your nationality. The atmosphere holds no record of which country emitted which carbon. Only humans sort each other by things they never chose."</div>
+              <p>Nature does not recognize the lines we have drawn. A river does not stop at a border. A wildfire does not spare one side of a fence. The Earth operates as one system — always has. The divisions are ours. And so, increasingly, are the consequences.</p>
+            </div>
+            <div class="message-box"><strong>Nature does not recognize the divisions humanity creates.</strong> The planet will respond to what we collectively do — not to which flag we were doing it under.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: AI -->
+      <section class="article-section" id="sec6" data-section="5">
+        <div class="section-grid reverse">
+          <div class="section-images">
+            <div class="sec-img" style="height:320px;">
+              <img src="https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg?auto=compress&cs=tinysrgb&w=800"
+                   alt="AI and human hand"
+                   onerror="this.src='https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">06 · The Mirror We Built</div>
+            <h2 class="section-heading gold">Artificial Intelligence</h2>
+            <div class="section-body">
+              <p>Every generation has stood at the edge of a technology it did not fully understand. Fire warmed homes and burned villages. The printing press spread knowledge and propaganda with equal efficiency. The technology was never the problem. It has never been the problem.</p>
+            </div>
+
+            <!-- Timeline graphic -->
+            <div class="timeline-wrap">
+              <div class="timeline-label">Every breakthrough expanded human power</div>
+              <div class="timeline-track">
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Fire · ~1 million years ago</div>
+                    <div class="timeline-desc">Warmth, cooked food, protection. And the first weapon.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Agriculture · ~10,000 BCE</div>
+                    <div class="timeline-desc">Civilisation. And the first systematic clearing of forests.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Writing · ~3,200 BCE</div>
+                    <div class="timeline-desc">Recorded knowledge. And recorded propaganda.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Steam Engine · 1760s</div>
+                    <div class="timeline-desc">Industrial revolution. And the beginning of large-scale atmospheric carbon.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Electricity · 1880s</div>
+                    <div class="timeline-desc">Light, communication, medicine. And the coal plants that powered them.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era">Internet · 1990s</div>
+                    <div class="timeline-desc">Global knowledge at your fingertips. And the fastest disinformation machine ever built.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-line-wrap">
+                    <div class="timeline-dot" style="background: var(--gold); box-shadow: 0 0 8px var(--gold-dim);"></div>
+                  </div>
+                  <div class="timeline-text">
+                    <div class="timeline-era" style="color: var(--ember);">Artificial Intelligence · Now</div>
+                    <div class="timeline-desc">Still a tool. The challenge was never power itself. The challenge was always wisdom.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-note">Every breakthrough in this list was used to build something — and to destroy something. AI is no different. What differs is the speed at which both outcomes are now possible.</div>
+            </div>
+
+            <div class="section-body">
+              <p>Artificial intelligence is a mirror — it reflects exactly what humanity puts into it. AI is helping researchers model climate solutions, accelerating drug discovery, making education accessible in places that never had enough teachers. It is genuinely extraordinary in the hands of people who want to build something.</p>
+              <p>But it is also in other hands. The same architecture that identifies tumours is being used to generate non-consensual imagery of real people. The same language models that help students learn are producing industrial-scale disinformation. This is not an AI problem. This is a human problem wearing an AI face.</p>
+              <p>The real divide is not AI versus humans. It is humans who use intelligence to create, against humans who use it to exploit. The machine learned from us. The question is what we choose to keep teaching it.</p>
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label green"><i class="fas fa-heartbeat"></i> Case Study: AI in Cancer Detection</div>
+              In 2020, researchers at Google Health published a study in Nature demonstrating that their AI system detected breast cancer in mammograms with greater accuracy than the radiologists it was tested alongside, reducing both false positives and false negatives. A 2023 study from Lund University in Sweden, involving nearly 80,000 women, found that an AI-assisted reading method detected 20 percent more cancers while simultaneously reducing the workload on radiologists by 44 percent. This is AI saving lives in a measurable, documented, reproducible way.
+            </div>
+
+            <div class="case-study">
+              <div class="case-study-label ember"><i class="fas fa-user-secret"></i> Case Study: Deepfake Scams and Disinformation</div>
+              In early 2024, a finance worker in Hong Kong was tricked into transferring approximately 25 million US dollars to fraudsters who used deepfake technology to impersonate senior company executives on a video call. The same year, AI-generated audio and video of political figures circulated widely in multiple national elections, making it difficult for ordinary voters to distinguish between real and fabricated statements. The technology used in both cases was not classified or experimental. It was commercially available.
+            </div>
+
+            <div class="ai-grid">
+              <div class="ai-box good">
+                <div class="ai-box-title"><i class="fas fa-circle-check"></i> Building With It</div>
+                <ul>
+                  <li>Climate modelling</li>
+                  <li>Medical diagnosis</li>
+                  <li>Accessible education</li>
+                  <li>Scientific research</li>
+                  <li>Language translation</li>
+                  <li>Disability assistance</li>
+                </ul>
+              </div>
+              <div class="ai-box bad">
+                <div class="ai-box-title"><i class="fas fa-triangle-exclamation"></i> Exploiting It</div>
+                <ul>
+                  <li>Deepfakes</li>
+                  <li>Non-consensual content</li>
+                  <li>Mass disinformation</li>
+                  <li>Scam automation</li>
+                  <li>Surveillance</li>
+                  <li>Manipulation at scale</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pull-quote">"Perhaps the greatest warning is not that machines are becoming more human — but that humans are teaching machines our worst habits before overcoming them ourselves."</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: GROWTH -->
+      <section class="article-section" id="sec7" data-section="6">
+        <div class="section-grid">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
+                   alt="Industrial pollution"
+                   onerror="this.src='https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=800&q=80"
+                   alt="Mining and extraction"
+                   onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">07 · The Final Commons</div>
+            <h2 class="section-heading ember">The Cost of Endless Growth</h2>
+            <div class="section-body">
+              <p>There is nothing wrong with growth. Prosperity lifted billions out of poverty. The argument is not against progress. The argument is against what happens when growth stops being a means and becomes the only end.</p>
+              <p>The Amazon rainforest is the lungs of the planet — a living system that regulates rainfall across a continent, sequesters carbon at a scale no technology has replicated, and houses an estimated ten percent of all species on Earth. It is being cleared. Not by mistake, not by accident, but by deliberate calculation — because cleared land has a quarterly value and a standing forest, to a balance sheet, does not.</p>
+              <div class="pull-quote ember-q">"The profit is private. The damage is shared. That asymmetry is not a side effect of the system — it is the design."</div>
+              <p>Mining operations tear open landscapes that took geological ages to form. Oil extraction funds economies and simultaneously bakes the atmosphere. These are not secret activities. They are publicly listed companies with shareholders and government contracts — systems carefully constructed to externalize the cost onto the commons, onto future generations, onto communities with the least power to resist.</p>
+              <p>The tragedy of the commons scales. What begins with one fisherman taking too many fish becomes an entire industry lobbying against catch limits. When growth becomes the only goal, the commons become expendable. And an expendable commons is a planet with an expiry date.</p>
+            </div>
+            <div class="message-box"><strong>Economic growth creates real prosperity.</strong> But a system that books the gains and offloads the costs onto nature and future generations is not growth — it is a debt being silently accumulated.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRIDGE to Hope -->
+      <div class="bridge-para">
+        And yet — after all of this — there is another side to the same species. The one that ignores warnings also, sometimes, heeds them. The one that creates problems also creates solutions. It would be dishonest to close without saying so.
+      </div>
+
+      <!-- SECTION 8: HOPE -->
+      <section class="article-section" id="sec8" data-section="7">
+        <div class="section-grid">
+          <div class="section-images">
+            <div class="sec-img tall">
+              <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80"
+                   alt="Hope and human achievement"
+                   onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="sec-img short">
+              <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=800&q=80"
+                   alt="International cooperation"
+                   onerror="this.src='https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80'">
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="section-number">08 · The Other Side of the Story</div>
+            <h2 class="section-heading green">Humanity Is Also Capable of Good</h2>
+            <div class="section-body">
+              <p>The same species that depleted the Grand Banks also came together to eradicate smallpox — a disease that killed an estimated 300 million people in the twentieth century alone. In 1980, the World Health Organisation declared it the first and, so far, only infectious disease in human history to have been entirely eliminated through coordinated global effort. No borders. No competing flags. Just scientists sharing data and vaccines across continents until the thing was gone.</p>
+              <p>The same species that launched wars built the International Space Station — a structure assembled in orbit by sixteen nations, including countries that had pointed missiles at each other for decades. It has been continuously occupied since the year 2000, maintained by astronauts who float past national identity at 28,000 kilometres per hour.</p>
+              <div class="pull-quote green-q">"The same minds that built the problem also built the answer. The question is which version of humanity shows up in time."</div>
+              <p>When a disaster strikes, something else also happens. Strangers drive through the night to donate blood. Governments that agree on nothing else agree to send aid. In 2004, after the Indian Ocean tsunami killed over 200,000 people across fourteen countries, international relief arrived from more than 100 nations within days. In 2010, when an earthquake levelled Port-au-Prince in Haiti, the global response was the largest humanitarian operation in history at that point.</p>
+              <p>Conservation has produced real results too. The bald eagle, once nearly extinct due to DDT and habitat loss, was removed from the endangered species list in 2007 after decades of legal protection and active preservation. The ozone layer — which was rapidly deteriorating in the 1980s — has been measurably recovering since nations agreed to the Montreal Protocol in 1987 and phased out the chemicals responsible. It is the single most successful global environmental agreement in history.</p>
+            </div>
+
+            <div class="hope-grid">
+              <div class="hope-card">
+                <div class="hope-card-title">Smallpox Eradicated</div>
+                <p>A disease killing millions per decade was wiped from the Earth through global scientific cooperation. Declared eradicated in 1980.</p>
+              </div>
+              <div class="hope-card">
+                <div class="hope-card-title">Montreal Protocol</div>
+                <p>Nations phased out ozone-destroying chemicals together. The ozone layer is recovering — measurably. First signed 1987.</p>
+              </div>
+              <div class="hope-card">
+                <div class="hope-card-title">International Space Station</div>
+                <p>Sixteen nations, including former Cold War rivals, built and operate a shared structure in orbit. Continuously occupied since 2000.</p>
+              </div>
+              <div class="hope-card">
+                <div class="hope-card-title">Global Disaster Relief</div>
+                <p>When catastrophe strikes, humanity consistently mobilises across borders. The 2004 tsunami drew aid from over 100 nations within days.</p>
+              </div>
+            </div>
+
+            <div class="message-box"><strong>The capacity for collective action is real.</strong> We have used it before. The climate crisis is not asking humanity to do something it has never done. It is asking it to do something it has already done — but faster, and at a scale that actually matches the problem.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-col">
+
+      <div class="sidebar-block">
+        <div class="sidebar-heading">On This Page</div>
+        <a class="toc-item" onclick="scrollToSection(0)">
+          <span class="toc-num">01</span>
+          <span class="toc-text">The Commons We All Share</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(1)">
+          <span class="toc-num">02</span>
+          <span class="toc-text">Oceans Without Owners</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(2)">
+          <span class="toc-num">03</span>
+          <span class="toc-text">Psychology of Ignoring</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(3)">
+          <span class="toc-num">04</span>
+          <span class="toc-text">When Humanity Fights Itself</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(4)">
+          <span class="toc-num">05</span>
+          <span class="toc-text">Division Beyond Borders</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(5)">
+          <span class="toc-num">06</span>
+          <span class="toc-text">The Mirror We Built — AI</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(6)">
+          <span class="toc-num">07</span>
+          <span class="toc-text">Cost of Endless Growth</span>
+        </a>
+        <a class="toc-item" onclick="scrollToSection(7)">
+          <span class="toc-num">08</span>
+          <span class="toc-text">Humanity Can Do Good</span>
+        </a>
+        <a class="toc-item" onclick="document.querySelector('.finale-section').scrollIntoView({behavior:'smooth'})">
+          <span class="toc-num">&#8595;</span>
+          <span class="toc-text">The Final Warning</span>
+        </a>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-heading">References</div>
+        <div class="ref-item">1. Garrett Hardin — <em>The Tragedy of the Commons</em>, Science, 1968</div>
+        <div class="ref-item">2. Aristotle — <em>Politics</em>, Book II · <a href="http://classics.mit.edu/Aristotle/politics.html" target="_blank">MIT Classics &#8599;</a></div>
+        <div class="ref-item">3. Erich Fromm — <em>The Heart of Man</em>, 1964 · Biophilia Framework</div>
+        <div class="ref-item">4. Elinor Ostrom — <em>Governing the Commons</em>, 1990 · Nobel Prize, Economics</div>
+        <div class="ref-item">5. Univ. of Minnesota — <a href="https://cshmodules.umn.edu/wholesystemshealing/ecohealing/ecotree/popups/belonging.html" target="_blank">Center for Spirituality &amp; Healing &#8599;</a></div>
+        <div class="ref-item">6. Google Health — <em>Nature</em>, 2020 · AI Cancer Detection Study</div>
+        <div class="ref-item">7. WHO — Smallpox Eradication Declaration, 1980</div>
+        <div class="ref-item">8. Montreal Protocol — UNEP, 1987</div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-heading">About</div>
+        <p class="about-text">Exploring technology, psychology, cybersecurity, and the digital world through a human lens. Written to make you think differently.</p>
+        <div class="theme-tags">
+          <a class="theme-tag" href="https://decodingnewage.in/blogs.html">Climate</a>
+          <a class="theme-tag" href="https://decodingnewage.in/blogs.html">Psychology</a>
+          <a class="theme-tag" href="https://decodingnewage.in/blogs.html">AI &amp; Ethics</a>
+          <a class="theme-tag" href="https://decodingnewage.in/blogs.html">Society</a>
+          <a class="theme-tag" href="https://decodingnewage.in/blogs.html">Environment</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- FINALE -->
+  <div class="finale-section">
+    <div class="finale-img">
+      <img src="https://github.com/fdev-looper/arimages/blob/main/heroar40.jpeg?raw=true"
+           alt="Earth — the final warning"
+           onerror="this.src='https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1600&q=80'">
+      <div class="finale-overlay"></div>
+    </div>
+    <div class="finale-content">
+      <h2 class="finale-heading">Global Warming Was Never<br>the <span>First Warning</span></h2>
+      <div class="finale-body">
+        <p>Pull everything together now. The commons were depleted not by accident but by the accumulated logic of self-interest without consequence. The warnings were ignored not because humanity lacked intelligence but because our psychology is wired to prioritize the immediate over the eventual.</p>
+        <p>Wars were fought — and ecosystems were destroyed in the fighting — because failures in diplomacy and leadership created situations where defense became the only option. Borders and divisions prevented the global cooperation that a global problem desperately requires. Technology was handed to the worst versions of ourselves before we had finished becoming better ones.</p>
+        <p>And growth — relentless, unaccountable, extractive growth — treated the planet as a raw material rather than a living system.</p>
+        <p>But we also eradicated smallpox. We also signed the Montreal Protocol and watched the ozone layer begin to heal. We also built a space station with former enemies. The capacity to act together is not theoretical — it is historical. We have done it. We know how it feels.</p>
+        <p>Global warming is the fire. But global warning is the spark — and the spark was never hidden in the atmosphere alone. It was visible in every forest cleared for short-term profit. In every ocean fished past recovery. In every war that converted resources into rubble and called it victory. In every border that stopped a human being but could not stop a wildfire. In every deepfake that proved we would corrupt our most powerful tools before we were done corrupting ourselves.</p>
+        <p>The Earth has survived asteroid impacts, ice ages, volcanic winters, and mass extinctions. The question is not whether the planet will survive humanity. The question is whether humanity will learn to survive itself.</p>
+      </div>
+      <div class="finale-closing">
+        Global warming may be the fire.<br>
+        Global warning was the spark.<br><br>
+        <span style="font-size:0.85em; color: var(--text-mid);">The warning was always there. We were never short of warnings.<br>We were short of the collective will to take them seriously.</span>
+      </div>
+
+      <div class="writer-note">
+        <div class="wn-label">&#9997; A Note From the Writer</div>
+        Everything you just read is my honest attempt to connect dots that I genuinely believe are connected. These are my thoughts, formed from reading, observing, and probably spending too much time staring at climate charts at 2 AM. I am not a certified ecologist, a decorated war correspondent, or a UN policy adviser. I am a person with an internet connection and strong opinions about humanity's recurring habit of ignoring obvious warning signs. If you disagree with any of it — wonderful. That is what the comments section was invented for. I will not be fighting anyone over this, partly because I believe in constructive dialogue, and mostly because I have articles left to write and a planet to worry about. Read it, think about it, and form your own view. That is all I ever really wanted.
+      </div>
+
+      <div class="share-row" style="justify-content:center;">
+        <span class="share-label">Share</span>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=Global+Warming+or+Global+Warning%3F+%7C+DNATech+Article+%2340&url=https://fdev-looper.github.io/blogs/ar40gw.html" target="_blank" title="Share on X"><i class="fab fa-x-twitter"></i></a>
+        <a class="share-btn" href="https://wa.me/?text=Read+this+article+on+DNATech%3A+https://fdev-looper.github.io/blogs/ar40gw.html" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://fdev-looper.github.io/blogs/ar40gw.html" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);this.innerHTML='<i class=\'fas fa-check\'></i>';setTimeout(()=>{this.innerHTML='<i class=\'fas fa-link\'></i>'},2000);return false;" title="Copy link"><i class="fas fa-link"></i></a>
+      </div>
+
+      <div class="article-stamp" style="margin: 2rem auto 0; display:inline-flex;">
+        <i class="fas fa-file-alt" style="color:var(--gold)"></i>
+        DNATech &nbsp;·&nbsp; <span>Article #40</span>
+      </div>
+
+      <div class="author-card" style="margin-top:2rem; text-align:left;">
+        <div class="author-avatar">
+          <img src="https://github.com/fdev-looper/blogs/blob/main/DNATech%20logo.png?raw=true" alt="DNATech"
+               onerror="this.style.display='none'">
+        </div>
+        <div>
+          <div class="author-name">DNATech Security Notes</div>
+          <div class="author-title">Threat Horizon Scout · Decode. Defend. Discover.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERENCE LINKS SECTION -->
+  <div class="ref-section-full">
+    <div class="ref-section-heading">Verify the Sources</div>
+    <div class="ref-links-grid">
+      <div class="ref-link-item">
+        <span class="ref-num">01</span> Hardin, G. (1968). The Tragedy of the Commons.<br>
+        <a href="https://www.science.org/doi/10.1126/science.162.3859.1243" target="_blank">science.org/doi/10.1126/science.162.3859.1243 &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">02</span> Aristotle. Politics, Book II. MIT Classics.<br>
+        <a href="http://classics.mit.edu/Aristotle/politics.html" target="_blank">classics.mit.edu/Aristotle/politics.html &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">03</span> Erich Fromm. The Heart of Man (1964). Biophilia concept.<br>
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1470658/" target="_blank">ncbi.nlm.nih.gov — Biophilia review &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">04</span> Amazon deforestation data — Brazil's INPE satellite monitoring.<br>
+        <a href="https://www.science.org/doi/10.1126/science.aat2340" target="_blank">science.org — Amazon tipping point study &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">05</span> Aral Sea collapse — NASA Earth Observatory.<br>
+        <a href="https://earthobservatory.nasa.gov/images/1346/aral-sea" target="_blank">earthobservatory.nasa.gov/images/1346/aral-sea &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">06</span> Grand Banks cod collapse — NOAA Fisheries history.<br>
+        <a href="https://www.fisheries.noaa.gov/feature-story/tale-two-fisheries" target="_blank">fisheries.noaa.gov — Tale of Two Fisheries &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">07</span> Kuwait oil fires 1991 — USGS Environmental Impact Assessment.<br>
+        <a href="https://pubs.usgs.gov/of/1993/0363/report.pdf" target="_blank">pubs.usgs.gov — Kuwait Oil Fires Report &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">08</span> Russia-Ukraine environmental damage — Kyiv School of Economics, 2023.<br>
+        <a href="https://kse.ua/wp-content/uploads/2023/09/Report_Environmental_Damage_ENG.pdf" target="_blank">kse.ua — Environmental Damage Report &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">09</span> AI breast cancer detection — McKinney et al., Nature (2020).<br>
+        <a href="https://www.nature.com/articles/s41586-019-1799-6" target="_blank">nature.com/articles/s41586-019-1799-6 &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">10</span> AI-assisted mammography — Lund University, Sweden (2023).<br>
+        <a href="https://www.thelancet.com/journals/lanonc/article/PIIS1470-2045(23)00298-X/fulltext" target="_blank">thelancet.com — AI Mammography Trial &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">11</span> Hong Kong deepfake fraud, 2024 — South China Morning Post.<br>
+        <a href="https://www.scmp.com/news/hong-kong/law-and-crime/article/3250851/hong-kong-police-officer-deepfake-video-conference-fraud-25-million" target="_blank">scmp.com — HK Deepfake Fraud &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">12</span> WHO Smallpox Eradication Declaration, 1980.<br>
+        <a href="https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination" target="_blank">who.int — Smallpox History &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">13</span> Montreal Protocol and ozone recovery — UNEP.<br>
+        <a href="https://ozone.unep.org/treaties/montreal-protocol" target="_blank">ozone.unep.org — Montreal Protocol &#8599;</a>
+      </div>
+      <div class="ref-link-item">
+        <span class="ref-num">14</span> Elinor Ostrom. Governing the Commons (1990). Cambridge University Press.<br>
+        <a href="https://www.cambridge.org/core/books/governing-the-commons/A8BB63BC4A1433A50A3FB92EDBBB97D5" target="_blank">cambridge.org — Governing the Commons &#8599;</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">DNATech</div>
+        <div class="footer-tagline">Decode. Defend. Discover.</div>
+      </div>
+      <nav class="footer-nav">
+        <a href="https://decodingnewage.in/">Home</a>
+        <a href="https://decodingnewage.in/projects.html">Projects</a>
+        <a href="https://decodingnewage.in/blogs.html">Blogs</a>
+        <a href="https://decodingnewage.in/aboutdna.html">About</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&#169; 2026 DNATech Notes. Stay informed. Stay connected. Stay secure.</div>
+      <div class="social-links">
+        <a href="https://github.com/fdev-looper" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/_anujxe/" class="social-link" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/anuj-shukla-2590a3320/" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const sections = ['sec1','sec2','sec3','sec4','sec5','sec6','sec7','sec8'];
+    const meterColors = ['#4a8c6f','#5a9a6f','#7aaa60','#c8a96e','#c88840','#c46040','#c45e3a','#4a8c6f'];
+    const dots = document.querySelectorAll('.meter-dot');
+    const meterFill = document.getElementById('meterFill');
+    const progress = document.getElementById('readProgress');
+    const header = document.getElementById('siteHeader');
+    const backTop = document.getElementById('backTop');
+    const tocItems = document.querySelectorAll('.toc-item');
+    let lastY = 0;
+    let currentSection = -1;
+
+    function scrollToSection(idx) {
+      const el = document.getElementById(sections[idx]);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+
+      progress.style.width = (y / total * 100) + '%';
+
+      header.classList.toggle('hidden', y > lastY && y > 100);
+      lastY = y;
+
+      backTop.classList.toggle('show', y > 500);
+
+      let active = -1;
+      sections.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.5) active = i;
+        }
+      });
+
+      if (active !== currentSection) {
+        currentSection = active;
+        dots.forEach((d, i) => d.classList.toggle('active', i === active));
+        tocItems.forEach((t, i) => t.classList.toggle('active', i === active));
+
+        if (active >= 0) {
+          const pct = ((active + 1) / sections.length) * 100;
+          meterFill.style.height = pct + '%';
+          meterFill.style.background = meterColors[active];
+        }
+      }
+    });
+  </script>
+</body>
+</html>
